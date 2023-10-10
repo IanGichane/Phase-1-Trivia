@@ -3,7 +3,12 @@ const trivia =
   "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean";
 
 console.log("hello");
-function getTrivia(result) {
+function getTrivia(trivaQues) {
+  let list = document.createElement("li");
+  list.textContent = `${trivaQues.question}`;
+  document.querySelector(".container").appendChild(list);
+
+  console.log(list);
   console.log(result);
   console.log("T");
 }
@@ -20,7 +25,7 @@ function getData() {
         getTrivia(trivaQues);
       });
     })
-    // .then((data) =>
+    // .then((data) => data is not an array but data,results is
     //   data.forEach(
     //     // console.log('hello')
     //     (trivQues) => {
