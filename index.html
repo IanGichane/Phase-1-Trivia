@@ -12,12 +12,17 @@
     <main>
       <div id="score">
         <h3>score:</h3>
-        <span>0</span>
+        <span></span>
       </div>
-      <div class="container"></div>
+      <div class="container">
+        <p id="question"></p>
+      </div>
 
-      <button id="True">True</button>
-      <button id="False">False</button>
+      <form id="action">
+       
+        <input type="button" value="True" onClick=refreshPage()>
+        <input type="button" value="False" onClick=refreshPage()>
+      </form>
     </main>
   </body>
 </html>
