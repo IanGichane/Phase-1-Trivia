@@ -12,9 +12,6 @@ function question(result) {
   console.log(result[i].question);
   let triviaQuestion = document.querySelector("#question");
   triviaQuestion.innerText = `${result[i].question} ${result[i].correct_answer}`;
-
-  refreshPage()
-
   document.querySelector("#True").addEventListener("click", () => {
     let response = document.querySelector("#response");
     if (result[i].correct_answer === "True") {
@@ -38,13 +35,14 @@ function question(result) {
   });
 }
 function counter() {  
-  console.log("Hello");
+  // console.log("Hello");
   let count = document.querySelector('#counter')
   count.innerHTML--
-  console.log(count)
+  // console.log(count)
   if(count.textContent<=0){
-    console.log('Condition')
-    // window.location.reload();
+    count.innerHTML=7
+    // console.log('Condition')
+     window.location.reload();
   }
 }
 
