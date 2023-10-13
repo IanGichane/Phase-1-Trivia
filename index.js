@@ -30,7 +30,6 @@ function counter() {
   if (count.textContent < 0) {
     count.innerHTML = 3;
     getData();
-    
   } else {
     response.innerHTML = "";
   }
@@ -39,9 +38,9 @@ function counter() {
 response.innerHTML = `<h2>Your score is ${score}</h2>`;
 //handle true button
 function handleTrue(result, i) {
-  console.log(typeof(result[i].correct_answer ))
-  const truth = result[i].correct_answer
-  console.log(truth)
+  console.log(typeof result[i].correct_answer);
+  const truth = result[i].correct_answer;
+  console.log(truth);
   if (truth === trueChoice) {
     response.innerHTML = `<h2>That is Correct</h2>`;
     updateScore();
@@ -84,6 +83,12 @@ function question(result) {
   // handleFalse(result, i);
   console.log(`1 ${score}`);
 }
+//Fix:getQuestion function to work with the data provided
+function getQuestion(result) {
+  let i = Math.floor(Math.random() * 10);
+  console.log(dat[i].question);
+  console.log(dat[i].correct_answer);
+}
 
 //Api fetch to retrieve questions ,calls the function function to display a random function
 //Fix data to display the right data when called
@@ -93,7 +98,7 @@ function getData() {
     .then((dt) => {
       console.log(dt);
       let result = dt.results;
-      question(result);
+      getQuestion(result);
     })
 
     .catch((err) => ("error", err));
