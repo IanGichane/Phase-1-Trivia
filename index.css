@@ -44,7 +44,7 @@ input{
     gap: 20px;
 }
 
-form{
+#action{
     display: flex;
     justify-content: space-around;
     width: 201px;

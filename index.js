@@ -1,29 +1,74 @@
-//console.log('hello')
-const trivia =
-  "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean";
-let response = document.querySelector("#response");
+// //console.log('hello')
+// const trivia =
+//   "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean";
+//  let response = document.querySelector("#response");
 
-//counter for score
+// //counter for score
 let score = 0;
-console.log(`1 ${score}`);
+// console.log(`1 ${score}`);
 
-//buttong choice select
-let trueChoice = "True";
-let falseChoice = "False";
 
-//reload counter
-setInterval(counter, 1000);
 
-//update the score counter
-function updateScore() {
-  score += 1;
-  document.getElementById("scoreCounter").textContent = score;
-}
+// //reload counter
+// setInterval(counter, 1000);
 
-// scoreBoard.textContent = score;
 
-//Display question to the Dom
-//A counter to relod and bring up the next question when the counter reaches xero
+
+// // scoreBoard.textContent = score;
+
+// //Display question to the Dom
+// //A counter to relod and bring up the next question when the counter reaches xero
+
+
+// response.innerHTML = `<h2>Your score is ${score}</h2>`;
+// //handle true button
+// function handleTrue(result, i) {
+//   console.log(typeof result[i].correct_answer);
+//   const truth = result[i].correct_answer;
+//   console.log(truth);
+//   if (truth === trueChoice) {
+//     response.innerHTML = `<h2>That is Correct</h2>`;
+//     updateScore();
+//   } else {
+//     // console.log("Oh No!");
+//     response.innerHTML = `<h2>Oh No!</h2>`;
+//   }
+// }
+
+// //handle false button
+// function handleFalse(result, i) {
+//   if (result[i].correct_answer === falseChoice) {
+//     response.innerHTML = `<h2>That is Correct</h2>`;
+//     updateScore();
+//   } else {
+//     response.innerHTML = `<h2>Oh No!</h2>`;
+//   }
+// }
+
+// let reset = document.querySelector("#reset");
+// reset.addEventListener("click", (e) => {
+//   window.location.reload();
+//   getData();
+//   score = 0;
+// });
+
+// //Questing  function to work with the data from the api
+// function question(result) {
+//   let i = Math.floor(Math.random() * 10);
+//   let triviaQuestion = document.querySelector("#question");
+//   triviaQuestion.innerText = `${result[i].question} ${result[i].correct_answer} `;
+//   // console.log(`${result[i].correct_answer}`)
+//   document
+//     .querySelector("#True")
+//     .addEventListener("click", () => handleTrue(result, i));
+//   document
+//     .querySelector("#False")
+//     .addEventListener("click", () => handleFalse(result, i));
+//   // handleTrue(result, i);
+//   // handleFalse(result, i);
+//   console.log(`1 ${score}`);
+// }
+//counter/timer
 function counter() {
   let count = document.querySelector("#counter");
   count.innerHTML--;
@@ -34,14 +79,19 @@ function counter() {
     response.innerHTML = "";
   }
 }
+//update the score counter
+function updateScore() {
+  score += 1;
+  document.getElementById("scoreCounter").textContent = score;
+}
 
-response.innerHTML = `<h2>Your score is ${score}</h2>`;
-//handle true button
+//Handle true button
 function handleTrue(result, i) {
-  console.log(typeof result[i].correct_answer);
-  const truth = result[i].correct_answer;
-  console.log(truth);
-  if (truth === trueChoice) {
+  //  alert('Clicked')
+  let response = document.querySelector("#response");
+  let answer = result[i].correct_answer;
+  if (answer === "True") {
+  //alert("Clicked");
     response.innerHTML = `<h2>That is Correct</h2>`;
     updateScore();
   } else {
@@ -50,50 +100,39 @@ function handleTrue(result, i) {
   }
 }
 
-//handle false button
+// handle false button
 function handleFalse(result, i) {
-  if (result[i].correct_answer === falseChoice) {
+  let answer = result[i].correct_answer;
+  if (answer === "False") {
     response.innerHTML = `<h2>That is Correct</h2>`;
     updateScore();
   } else {
     response.innerHTML = `<h2>Oh No!</h2>`;
   }
 }
-
-let reset = document.querySelector("#reset");
-reset.addEventListener("click", (e) => {
-  window.location.reload();
-  getData();
-  score = 0;
-});
-
-//Questing  function to work with the data from the api
-function question(result) {
+//Fix:getQuestion function to work with the data provided
+function getQuestion(result) {
   let i = Math.floor(Math.random() * 10);
+  // console.log(result[i].question);
+  // console.log(result[i].correct_answer);
+  let randomQuestion = result[i].question;
+  let answer = result[i].correct_answer;
   let triviaQuestion = document.querySelector("#question");
-  triviaQuestion.innerText = `${result[i].question} ${result[i].correct_answer} `;
-  // console.log(`${result[i].correct_answer}`)
+  triviaQuestion.innerText = `${randomQuestion} ${answer} `;
   document
     .querySelector("#True")
     .addEventListener("click", () => handleTrue(result, i));
   document
     .querySelector("#False")
     .addEventListener("click", () => handleFalse(result, i));
-  // handleTrue(result, i);
-  // handleFalse(result, i);
-  console.log(`1 ${score}`);
-}
-//Fix:getQuestion function to work with the data provided
-function getQuestion(result) {
-  let i = Math.floor(Math.random() * 10);
-  console.log(dat[i].question);
-  console.log(dat[i].correct_answer);
 }
 
 //Api fetch to retrieve questions ,calls the function function to display a random function
 //Fix data to display the right data when called
 function getData() {
-  fetch(trivia)
+  fetch(
+    "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean"
+  )
     .then((response) => response.json())
     .then((dt) => {
       console.log(dt);
@@ -103,3 +142,4 @@ function getData() {
 
     .catch((err) => ("error", err));
 }
+getData();
