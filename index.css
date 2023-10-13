@@ -30,6 +30,19 @@ body{
     border-radius: 10px;
     
 }
+input{
+    width: 120px;
+    padding: 10px 0;
+    border: 2.5px solid #424ae0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#timer-counter{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+}
 
 form{
     display: flex;
